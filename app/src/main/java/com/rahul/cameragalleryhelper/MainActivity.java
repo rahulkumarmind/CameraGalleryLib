@@ -1,4 +1,4 @@
-package com.rahul.CameraGalleryLib;
+package com.rahul.cameragalleryhelper;
 
 import android.os.Bundle;
 

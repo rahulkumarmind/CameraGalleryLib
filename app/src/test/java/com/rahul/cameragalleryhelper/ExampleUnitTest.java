@@ -1,4 +1,4 @@
-package com.rahul.cameragallerylib;
+package com.rahul.cameragalleryhelper;
 
 import org.junit.Test;
 
