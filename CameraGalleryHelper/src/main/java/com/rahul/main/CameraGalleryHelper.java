@@ -1,7 +1,8 @@
-package com.rahul.cameragalleryhelper;
+package com.rahul.main;
 
 import android.app.Activity;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.provider.MediaStore;
@@ -18,13 +19,11 @@ import java.io.InputStream;
 
 public class CameraGalleryHelper {
     private static CameraGalleryHelper instance;
-    private final Activity context;
+    private final Context context;
     private Uri cameraUri;
     private ActivityResultLauncher<Intent> startCamera;
     private ActivityResultLauncher<String> startGallery;
 
-
-    // Define callback interfaces
     public interface CameraResultCallback {
         void onCameraResult(File file, Uri uri);
     }
@@ -36,10 +35,8 @@ public class CameraGalleryHelper {
     private CameraResultCallback cameraResultCallback;
     private GalleryResultCallback galleryResultCallback;
 
-    private CameraGalleryHelper(AppCompatActivity context) {
+    private CameraGalleryHelper(Context context) {
         this.context = context;
-
-        initLauncher(context);
     }
 
     private void initLauncher(AppCompatActivity context) {
@@ -64,10 +61,11 @@ public class CameraGalleryHelper {
     }
 
 
-    public static synchronized CameraGalleryHelper getInstance(AppCompatActivity context) {
+    public static synchronized CameraGalleryHelper getInstance(Context context) {
         if (instance==null) {
             instance = new CameraGalleryHelper(context);
         }
+        instance.initLauncher((AppCompatActivity) context);
         return instance;
     }
 

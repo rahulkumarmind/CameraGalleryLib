@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.rahul.cameragalleryhelper"
+    namespace = "com.rahul.main"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.rahul.cameragalleryhelper"
+        applicationId = "com.rahul.main"
         minSdk = 24
         targetSdk = 34
         versionCode = 1

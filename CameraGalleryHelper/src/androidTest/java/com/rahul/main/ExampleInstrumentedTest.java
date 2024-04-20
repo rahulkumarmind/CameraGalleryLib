@@ -1,4 +1,4 @@
-package com.rahul.cameragalleryhelper;
+package com.rahul.main;
 
 import android.content.Context;
 
