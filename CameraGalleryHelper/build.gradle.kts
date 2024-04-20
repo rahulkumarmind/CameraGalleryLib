@@ -1,6 +1,6 @@
 plugins {
-    alias(libs.plugins.androidLibrary)
     id("maven-publish")
+    id("com.android.library")
 }
 
 android {
@@ -18,8 +18,7 @@ android {
         release {
             isMinifyEnabled = false
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
             )
         }
     }
@@ -31,37 +30,25 @@ android {
 
 dependencies {
     implementation(libs.appcompat)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.ext.junit)
+    androidTestImplementation(libs.espresso.core)
 }
 
 
-//// This block ensures that the publishing configurations are evaluated after the project has been evaluated
-//afterEvaluate {
-//    android.libraryVariants.forEach { variant ->
-//
-//        publishing.publications.create(variant.name, MavenPublication::class) {
-//
-//            from(components.findByName(variant.name))
-//
-//            groupId = "com.github.rahulkumarmind"
-//            artifactId = "CameraGalleryLib"
-//            version = "1.0.0"
-//        }
-//    }
-//}
 
 
+afterEvaluate {
+    publishing {
+        publications {
+            create<MavenPublication>("release") {
 
-    afterEvaluate {
-        publishing {
-            publications {
-                create<MavenPublication>("release") {
+                from(components.findByName("release"))
 
-                    from(components.findByName("release"))
-
-                    groupId = "com.github.rahulkumarmind"
-                    artifactId = "CameraGalleryLib"
-                    version = "1.0.0"
-                }
+                groupId = "com.github.rahulkumarmind"
+                artifactId = "CameraGalleryLib"
+                version = "1.0.0"
             }
         }
     }
+}
